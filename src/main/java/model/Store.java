@@ -1,16 +1,38 @@
 package model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="store")
+
 public class Store {
 	
-	//variables
+	//attributes
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="STORE_ID")
 	private int storeId;
+	@Column(name="STORE_NAME")
 	private String storeName;
+	@Column(name="STORE_ADDRESS")
 	private String storeAddress;
+	@Column(name="PHONE_NUMBER")
 	private String phoneNumber;
 	
 	//default no args
 	public Store() {
 		super();
+	}
+
+	//one arg
+	public Store(String storeName) {
+		super();
+		this.storeName = storeName;
 	}
 
 	//two args
@@ -28,6 +50,7 @@ public class Store {
 		this.storeAddress = storeAddress;
 		this.phoneNumber = phoneNumber;
 	}
+
 
 	//getters and setters
 	public int getStoreId() {
@@ -62,6 +85,10 @@ public class Store {
 		this.phoneNumber = phoneNumber;
 	}
 
-	
+	@Override
+	public String toString() {
+		return "Store [storeId=" + storeId + ", storeName=" + storeName + ", storeAddress=" + storeAddress
+				+ ", phoneNumber=" + phoneNumber + "]";
+	}
 
 }

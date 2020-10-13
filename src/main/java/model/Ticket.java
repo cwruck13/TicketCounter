@@ -1,11 +1,26 @@
 package model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="ticket")
+
 public class Ticket {
 	
-	//variables
+	// attributes
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="ID")
 	private int id;
+	@Column(name="TICKET_DESCRIPTION")
 	private String description;
-	private int storeId;
+	private int storeId; // wasn't sure if we were still going to use store id in the table
+	@Column(name="TICKET_COMPLETED")
 	private boolean isCompleted;
 	
 	//default no args
@@ -84,4 +99,7 @@ public class Ticket {
 				+ isCompleted + "]";
 	}
 	
+	//public String returnTicketDetails() {
+	//	return id + " : " + description + ": Completion : " + isCompleted;
+ 	//}
 }
