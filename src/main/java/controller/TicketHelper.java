@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -22,6 +24,12 @@ public class TicketHelper {
 		em.persist(ti);
 		em.getTransaction().commit();
 		em.close();
+	}
+	
+	public List<Ticket> showAllTickets(){
+		EntityManager em = emfactory.createEntityManager();
+		List<Ticket> allTickets = em.createQuery("SELECT t FROM Ticket t").getResultList();
+		return allTickets;
 	}
 
 	//to delete ticket
