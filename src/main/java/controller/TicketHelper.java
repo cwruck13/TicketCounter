@@ -9,9 +9,13 @@ import model.Ticket;
 
 public class TicketHelper {
 	
-	static EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("");
+	static EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("TicketCounter");
 
-	//insert ticket
+	/**
+	 * Inserts a ticket into the TICKET TABLE
+	 * in the ticket counter database
+	 * @param ti = incoming ticket to be inserted
+	 */
 	public void insertTicket(Ticket ti) {
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
@@ -26,11 +30,12 @@ public class TicketHelper {
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
 		TypedQuery<Ticket> typedQuery = em.createQuery(
-				"select ti from Ticket ti where ti.description = :selectedDescription and ti.isCompleted = :selectedIsCompleted",
+				"select ti from Ticket ti where ti.description = :selectedDescription and ti.isCompleted = :selectedIsCompleted and ti.store = :selectedStore",
 				Ticket.class);
 		// Substitute parameter with actual data from the toDelete item
 		typedQuery.setParameter("selectedDescription", toDelete.getDescription());
 		typedQuery.setParameter("selectedIsCompleted", toDelete.isCompleted());
+		typedQuery.setParameter("selectedStore", toDelete.getStore());
 
 		// we only want one result
 		typedQuery.setMaxResults(1);
