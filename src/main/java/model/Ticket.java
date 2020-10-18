@@ -1,12 +1,30 @@
 package model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "ticket")
 public class Ticket {
 	
-	//variables
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "ID")
 	private int id;
+	
+	@Column(name = "STORE")
+	private String store;
+	
+	@Column(name = "DESCRIPTION")
 	private String description;
-	private int storeId;
+	
+	@Column(name = "IS_COMPLETE")
 	private boolean isCompleted;
+	
 	
 	//default no args
 	public Ticket() {
@@ -14,27 +32,31 @@ public class Ticket {
 	}
 
 	//two args
-	public Ticket(boolean isCompleted, int id) {
+	public Ticket(int id, boolean isCompleted) {
 		super();
 		this.isCompleted = isCompleted;
 		this.id = id;
 	}
 
 	//three args
-	public Ticket(boolean isCompleted, int storeId, int id) {
+	public Ticket(int id, String store, boolean isCompleted) {
 		super();
 		this.isCompleted = isCompleted;
-		this.storeId = storeId;
+		this.store = store;
 		this.id = id;
 	}
 
-	//all args
-	public Ticket(String description, boolean isCompleted, int storeId, int id) {
+	/**
+	 * Default constructor when creating tickets for the store.
+	 * @param store
+	 * @param isCompleted
+	 * @param description
+	 */
+	public Ticket(String store, boolean isCompleted,  String description) {
 		super();
 		this.description = description;
 		this.isCompleted = isCompleted;
-		this.storeId = storeId;
-		this.id = id;
+		this.store = store;
 	}
 
 
@@ -59,13 +81,13 @@ public class Ticket {
 	}
 
 
-	public int getStoreId() {
-		return storeId;
+	public String getStore() {
+		return store;
 	}
 
 
-	public void setStoreId(int storeId) {
-		this.storeId = storeId;
+	public void setStoreId(String store) {
+		this.store = store;
 	}
 
 
@@ -80,7 +102,7 @@ public class Ticket {
 
 	@Override
 	public String toString() {
-		return "Ticket [id=" + id + ", description=" + description + ", storeId=" + storeId + ", isCompleted="
+		return "Ticket [id=" + id + ", description=" + description + ", storeId=" + store + ", isCompleted="
 				+ isCompleted + "]";
 	}
 	
