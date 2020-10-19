@@ -42,7 +42,7 @@ public class TicketHelper {
 				Ticket.class);
 		// Substitute parameter with actual data from the toDelete item
 		typedQuery.setParameter("selectedDescription", toDelete.getDescription());
-		typedQuery.setParameter("selectedIsCompleted", toDelete.isCompleted());
+		typedQuery.setParameter("selectedIsCompleted", toDelete.getIsCompleted());
 		typedQuery.setParameter("selectedStoreCode", toDelete.getStoreCode());
 
 		// we only want one result

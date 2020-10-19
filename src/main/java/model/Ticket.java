@@ -82,13 +82,21 @@ public class Ticket {
 	}
 
 
-	public boolean isCompleted() {
+	public boolean getIsCompleted() {
 		return isCompleted;
 	}
 
 
-	public void setCompleted(boolean isCompleted) {
+	public void setIsCompleted(boolean isCompleted) {
 		this.isCompleted = isCompleted;
 	}
+
+
+	@Override
+	public String toString() {
+		return "Ticket [id=" + id + ", storeCode=" + storeCode + ", description=" + description + ", isCompleted="
+				+ isCompleted + "]";
+	}
+	
 	
 }
