@@ -2,18 +2,16 @@ package model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "store")
 public class Store {
+	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "STORE_ID")
-	private int storeId;
+	@Column(name = "STORE_CODE")
+	private String storeCode;
 	
 	@Column(name = "STORE_NAME")
 	private String storeName;
@@ -29,42 +27,27 @@ public class Store {
 		super();
 	}
 
-	//two args
-	public Store(int storeId, String storeName) {
+	public Store(String storeCode, String storeName, String storeAddress, String phoneNumber) {
 		super();
-		this.storeId = storeId;
-		this.storeName = storeName;
-	}
-
-	//all args
-	public Store(int storeId, String storeName, String storeAddress, String phoneNumber) {
-		super();
-		this.storeId = storeId;
-		this.storeName = storeName;
-		this.storeAddress = storeAddress;
-		this.phoneNumber = phoneNumber;
-	}
-	
-	/**
-	 * Default constructor when creating a store.
-	 * @param storeName
-	 * @param storeAddress
-	 * @param phoneNumber
-	 */
-	public Store(String storeName, String storeAddress, String phoneNumber) {
-		super();
+		this.storeCode = storeCode;
 		this.storeName = storeName;
 		this.storeAddress = storeAddress;
 		this.phoneNumber = phoneNumber;
 	}
 
-	//getters and setters
-	public int getStoreId() {
-		return storeId;
+
+
+	public Store(String storeCode) {
+		super();
+		this.storeCode = storeCode;
 	}
 
-	public void setStoreId(int storeId) {
-		this.storeId = storeId;
+	public String getStoreCode() {
+		return storeCode;
+	}
+
+	public void setStoreCode(String storeCode) {
+		this.storeCode = storeCode;
 	}
 
 	public String getStoreName() {
@@ -91,12 +74,14 @@ public class Store {
 		this.phoneNumber = phoneNumber;
 	}
 
+
+
 	@Override
 	public String toString() {
-		return "Store [storeId=" + storeId + ", storeName=" + storeName + ", storeAddress=" + storeAddress
+		return "Store [storeCode=" + storeCode + ", storeName=" + storeName + ", storeAddress=" + storeAddress
 				+ ", phoneNumber=" + phoneNumber + "]";
 	}
 
-	
+
 
 }

@@ -38,12 +38,12 @@ public class TicketHelper {
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
 		TypedQuery<Ticket> typedQuery = em.createQuery(
-				"select ti from Ticket ti where ti.description = :selectedDescription and ti.isCompleted = :selectedIsCompleted and ti.store = :selectedStore",
+				"select ti from Ticket ti where ti.description = :selectedDescription and ti.isCompleted = :selectedIsCompleted and ti.storeCode = :selectedStoreCode",
 				Ticket.class);
 		// Substitute parameter with actual data from the toDelete item
 		typedQuery.setParameter("selectedDescription", toDelete.getDescription());
 		typedQuery.setParameter("selectedIsCompleted", toDelete.isCompleted());
-		typedQuery.setParameter("selectedStore", toDelete.getStore());
+		typedQuery.setParameter("selectedStoreCode", toDelete.getStoreCode());
 
 		// we only want one result
 		typedQuery.setMaxResults(1);

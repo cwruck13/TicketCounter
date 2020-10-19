@@ -1,10 +1,13 @@
 package model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -16,8 +19,8 @@ public class Ticket {
 	@Column(name = "ID")
 	private int id;
 	
-	@Column(name = "STORE")
-	private String store;
+	@Column(name="STORE_CODE")
+	private String storeCode;
 	
 	@Column(name = "DESCRIPTION")
 	private String description;
@@ -30,37 +33,25 @@ public class Ticket {
 	public Ticket() {
 		super();
 	}
-
-	//two args
-	public Ticket(int id, boolean isCompleted) {
+	
+	
+	public Ticket(String storeCode, String description, boolean isCompleted) {
 		super();
-		this.isCompleted = isCompleted;
-		this.id = id;
-	}
-
-	//three args
-	public Ticket(int id, String store, boolean isCompleted) {
-		super();
-		this.isCompleted = isCompleted;
-		this.store = store;
-		this.id = id;
-	}
-
-	/**
-	 * Default constructor when creating tickets for the store.
-	 * @param store
-	 * @param isCompleted
-	 * @param description
-	 */
-	public Ticket(String store, boolean isCompleted,  String description) {
-		super();
+		this.storeCode = storeCode;
 		this.description = description;
 		this.isCompleted = isCompleted;
-		this.store = store;
+	}
+	
+
+	public Ticket(int id, String storeCode, String description, boolean isCompleted) {
+		super();
+		this.id = id;
+		this.storeCode = storeCode;
+		this.description = description;
+		this.isCompleted = isCompleted;
 	}
 
 
-	//getters and setters
 	public int getId() {
 		return id;
 	}
@@ -68,6 +59,16 @@ public class Ticket {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+
+	public String getStoreCode() {
+		return storeCode;
+	}
+
+
+	public void setStoreCode(String storeCode) {
+		this.storeCode = storeCode;
 	}
 
 
@@ -81,16 +82,6 @@ public class Ticket {
 	}
 
 
-	public String getStore() {
-		return store;
-	}
-
-
-	public void setStoreId(String store) {
-		this.store = store;
-	}
-
-
 	public boolean isCompleted() {
 		return isCompleted;
 	}
@@ -98,12 +89,6 @@ public class Ticket {
 
 	public void setCompleted(boolean isCompleted) {
 		this.isCompleted = isCompleted;
-	}
-
-	@Override
-	public String toString() {
-		return "Ticket [id=" + id + ", description=" + description + ", storeId=" + store + ", isCompleted="
-				+ isCompleted + "]";
 	}
 	
 }
