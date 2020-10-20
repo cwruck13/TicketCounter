@@ -29,9 +29,12 @@ public class Ticket {
 	private boolean isCompleted;
 	
 	
-	//default no args
+	//default new ticket
 	public Ticket() {
 		super();
+		this.storeCode = "1889";
+		this.description = "PLEASE FILL IN DESCRIPTION";
+		this.isCompleted = false;
 	}
 	
 	
