@@ -1,6 +1,7 @@
 package model;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -41,12 +42,22 @@ public class Ticket {
 		this.isCompleted = false;
 	}
 	
-	
+
+	public Ticket(String storeCode, String description, boolean isCompleted, LocalDate ticketDate) {
+		super();
+		this.storeCode = storeCode;
+		this.description = description;
+		this.isCompleted = isCompleted;
+		this.ticketDate = ticketDate;
+	}
+
+
 	public Ticket(String storeCode, String description, boolean isCompleted) {
 		super();
 		this.storeCode = storeCode;
 		this.description = description;
 		this.isCompleted = isCompleted;
+		this.ticketDate = LocalDate.now();
 	}
 	
 
@@ -97,13 +108,26 @@ public class Ticket {
 	public void setIsCompleted(boolean isCompleted) {
 		this.isCompleted = isCompleted;
 	}
+	
+	public LocalDate getTicketDate() {
+		return ticketDate;
+	}
+
+
+	public void setTicketDate(LocalDate ticketDate) {
+		this.ticketDate = ticketDate;
+	}
 
 
 	@Override
 	public String toString() {
 		return "Ticket [id=" + id + ", storeCode=" + storeCode + ", description=" + description + ", isCompleted="
-				+ isCompleted + "]";
+				+ isCompleted + ", ticketDate=" + ticketDate + "]";
 	}
+
+
+
+	
 	
 	
 }
