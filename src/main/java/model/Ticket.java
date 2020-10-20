@@ -1,5 +1,7 @@
 package model;
 
+import java.time.LocalDate;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -28,6 +30,8 @@ public class Ticket {
 	@Column(name = "IS_COMPLETE")
 	private boolean isCompleted;
 	
+	@Column(name="TICKET_DATE")
+	private LocalDate ticketDate;
 	
 	//default new ticket
 	public Ticket() {
